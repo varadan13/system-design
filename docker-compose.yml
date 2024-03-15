@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo
+    container_name: my-mongodb-container
+    ports:
+      - "27017:27017"
+
+  app:
+    build: .
+    container_name: my-express-app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
